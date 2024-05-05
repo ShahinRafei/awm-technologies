@@ -1,7 +1,11 @@
 <script setup>
+//imports
 import {defineProps} from 'vue';
+
+//components
 import Action from './Action.vue';
 
+//props
 const props = defineProps(['email', 'username']);
 
 </script>

@@ -1,14 +1,18 @@
 <script setup>
+//imports
 import { reactive, defineEmits } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, helpers } from '@vuelidate/validators';
 
+//components
 import Action from './Action.vue';
 
+//data
 const state = reactive({
     userName: '',
 })
 
+//username rule
 const userNameRule = helpers.regex(/^[A-Za-z][A-Za-z0-9_]{5,20}$/);
 
 const rules = {
@@ -20,7 +24,13 @@ const rules = {
 
 const v$ = useVuelidate(rules, state, { $autoDirty: true });
 
+//emit to navigate and send username
 const emit = defineEmits(['nextComponent', 'value']);
+
+
+//methods
+
+//check username validation
 function goToNextForm() {
     v$.value.$validate();
     if(!v$.value.$invalid){

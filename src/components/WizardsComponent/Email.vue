@@ -1,10 +1,13 @@
 <script setup>
+//imports
 import { reactive } from 'vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required, helpers, email } from '@vuelidate/validators';
 
+//components
 import Action from './Action.vue';
 
+//data
 const state = reactive({
     email: '',
 })
@@ -18,8 +21,12 @@ const rules = {
 
 const v$ = useVuelidate(rules, state, { $autoDirty: true });
 
+//emit navigate and email data
 const emit = defineEmits(['nextComponent', 'value']);
 
+
+//methods
+//check email validation
 function goToNextForm() {
     v$.value.$validate();
     if(!v$.value.$invalid){
