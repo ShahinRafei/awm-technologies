@@ -1,12 +1,24 @@
 <script setup>
 //imports
-import {defineProps} from 'vue';
+import { defineProps, defineEmits } from 'vue';
 
 //components
 import Action from './Action.vue';
 
+//emits
+const emit = defineEmits(['nextComponent', 'prevComponent', 'value']);
+
 //props
 const props = defineProps(['email', 'username']);
+
+//methods
+function goToNextForm() {
+    emit('nextComponent');
+}
+
+function goToPrevForm() {
+    emit('prevComponent');
+}
 
 </script>
 <template>
@@ -15,5 +27,5 @@ const props = defineProps(['email', 'username']);
         <li>Username: {{ props.username }}</li>
         <li>Email: {{ props.email }}</li>
     </ul>
-    <Action :prev="true" :next="false" @nextComponent="$emit('nextComponent')" @prevComponent="$emit('prevComponent')"></Action>
+    <Action :prev="true" :next="false" @nextComponent="goToNextForm" @prevComponent="goToPrevForm"></Action>
 </template>

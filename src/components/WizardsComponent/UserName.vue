@@ -25,11 +25,10 @@ const rules = {
 const v$ = useVuelidate(rules, state, { $autoDirty: true });
 
 //emit to navigate and send username
-const emit = defineEmits(['nextComponent', 'value']);
+const emit = defineEmits(['nextComponent', 'prevComponent', 'value']);
 
 
 //methods
-
 //check username validation
 function goToNextForm() {
     v$.value.$validate();
@@ -37,6 +36,10 @@ function goToNextForm() {
         emit('nextComponent');
         emit('value', {username: state.userName});
     }
+}
+
+function goToPrevForm() {
+    emit('prevComponent');
 }
 
 </script>
@@ -51,6 +54,6 @@ function goToNextForm() {
         </p>
     </div>
 
-    <Action :prev="false" :next="true" @nextComponent="goToNextForm" @prevComponent="$emit('prevComponent')">
+    <Action :prev="false" :next="true" @nextComponent="goToNextForm" @prevComponent="goToPrevForm">
     </Action>
 </template>

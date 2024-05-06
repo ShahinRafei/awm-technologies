@@ -15,9 +15,6 @@ const data = reactive({
     email: '',
 });
 
-const prevBtn = ref(false);
-const nextBtn = ref(false);
-
 const componentLevel = {
     1: UserName,
     2: Email,

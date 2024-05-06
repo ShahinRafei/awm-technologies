@@ -22,7 +22,7 @@ const rules = {
 const v$ = useVuelidate(rules, state, { $autoDirty: true });
 
 //emit navigate and email data
-const emit = defineEmits(['nextComponent', 'value']);
+const emit = defineEmits(['nextComponent', 'prevComponent', 'value']);
 
 
 //methods
@@ -35,6 +35,10 @@ function goToNextForm() {
     }
 }
 
+function goToPrevForm() {
+    emit('prevComponent');
+}
+
 </script>
 <template>
     <h2 class="text-center font-semibold text-slate-700">Email:</h2>
@@ -44,5 +48,5 @@ function goToNextForm() {
             {{ error.$message }}
         </p>
     </div>
-    <Action :prev="true" :next="email" @nextComponent="goToNextForm" @prevComponent="$emit('prevComponent')"></Action>
+    <Action :prev="true" :next="email" @nextComponent="goToNextForm" @prevComponent="goToPrevForm"></Action>
 </template>
